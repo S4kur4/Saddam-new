@@ -1,7 +1,33 @@
 # Saddam-new
 Saddam-new is a DRDoS tool based on [Saddam](https://github.com/OffensivePython/Saddam).
 
-![image](http://upload.ouliu.net/i/201811071712128bkr1.jpeg)
+```bash
+ _____       _   _
+|   __|___ _| |_| |___ _____ ___ ___ ___ _ _ _
+|__   | .'| . | . | .'|     |___|   | -_| | | |
+|_____|__,|___|___|__,|_|_|_|   |_|_|___|_____|
+
+usage: saddam_new.py [-h] [--benchmark] [-a DOMAIN|IP] [-d FILE:FILE|DOMAIN]
+                     [-n FILE] [-c FILE] [-s FILE] [-p FILE] [-t N]
+
+Example: python saddam_new.py -n ./ntplist.txt -t 10 -a target.com
+
+Options:
+  -h, --help            Show Help Message And Exit
+  --benchmark           Calculate Amplification Factor
+  -a DOMAIN|IP, --aim DOMAIN|IP
+                        Aim To Attack
+  -d FILE:FILE|DOMAIN, --dns FILE:FILE|DOMAIN
+                        DNS Amplification List Fileand Domains to Resolve
+                        (e.g: dns.txt:[evildomain.com|domains_file.txt]
+  -n FILE, --ntp FILE   NTP Amplification List File
+  -c FILE, --cldap FILE
+                        CLDAP Amplification List File
+  -s FILE, --snmp FILE  SNMP Amplification List File
+  -p FILE, --ssdp FILE  SSDP Amplification List File
+  -t N, --threads N     Threads Number (default=1)
+```
+
 ### Compared with Saddam, there are several changes:
 
 1. Support for CLDAP protocol.
