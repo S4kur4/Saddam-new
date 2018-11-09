@@ -1,5 +1,5 @@
 # Saddam-new
-Saddam-new is a DRDoS tool based on [Saddam](https://github.com/OffensivePython/Saddam).
+Saddam-new is a simple reflection and amplification DoS attack tool based on [Saddam](https://github.com/OffensivePython/Saddam).
 
 ```bash
  _____       _   _
