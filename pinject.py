@@ -54,7 +54,7 @@ class IP(object):
         self.ttl = 255
         self.protocol = proto
         self.checksum = 2 # will be filled by kernel
-        self.source = socket.inet_aton(source)
+        self.source = socket.inet_aton(source) # Transfer IP address to a binary bumber
         self.destination = socket.inet_aton(destination)
     def pack(self):
         ver_ihl = (self.version << 4) + self.ihl
@@ -126,7 +126,7 @@ class TCP(object):
         self.rst = 0
         self.syn = 1
         self.fin = 0
-        self.window = socket.htons(5840)
+        self.window = socket.htons(5840) # Convert a host byte order positive integer to a network byte order integer
         self.checksum = 0
         self.urgp = 0
         self.payload = ""
@@ -234,7 +234,7 @@ def main():
         parser.print_help()
         sys.exit()
     else:
-        dst_host = socket.gethostbyname(options.dst)
+        dst_host = socket.gethostbyname(options.dst) # Get the IP address
     if options.src == None:
         # Get the current Network Interface
         src_host = socket.gethostbyname(socket.gethostname())
