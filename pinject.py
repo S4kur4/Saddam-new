@@ -7,11 +7,6 @@ This tool implemented by @OffensivePython: https://github.com/OffensivePython/Pi
 
 import socket
 import struct
-import threading
-import time
-import sys
-import random
-from optparse import OptionParser
 
 ETH_P_IP = 0x0800 # Internet Protocol Packet
 
@@ -26,9 +21,6 @@ def checksum(data):
         s = (s & 0xFFFF) + (s >> 16)
     s = ~s & 0xffff
     return s
-        
-class layer():
-    pass
 
 class ETHER(object):
     def __init__(self, src, dst, type=ETH_P_IP):
@@ -222,40 +214,3 @@ class UDP(object):
         packet = struct.pack('!HHHH',
             self.src, self.dst, length, 0)
         return packet
-
-def main():
-    parser = OptionParser()
-    parser.add_option("-s", "--src", dest="src", type="string",
-                      help="Source IP address", metavar="IP")
-    parser.add_option("-d", "--dst", dest="dst", type="string",
-                      help="Destination IP address", metavar="IP")
-    options, args = parser.parse_args()
-    if options.dst == None:
-        parser.print_help()
-        sys.exit()
-    else:
-        dst_host = socket.gethostbyname(options.dst) # Get the IP address
-    if options.src == None:
-        # Get the current Network Interface
-        src_host = socket.gethostbyname(socket.gethostname())
-    else:
-        src_host = options.src
-
-    print("[+] Local Machine: %s"%src_host)
-    print("[+] Remote Machine: %s"%dst_host)
-    data = "TEST!!"
-    print("[+] Data to inject: %s"%data)
-    # IP Header
-    ipobj = IP(src_host, dst_host)
-    # TCP Header
-    tcpobj = TCP(1234, 80)
-    response = send(ipobj, tcpobj, iface="eth0", retry=1, timeout=0.3)
-    if response:
-        ip = ipobj.unpack(response)
-        response = response[ip.ihl:]
-        tcp = tcpobj.unpack(response)
-        print "IP Header:", ip.list
-        print "TCP Header:", tcp.list
-
-if __name__=="__main__":
-    main()
