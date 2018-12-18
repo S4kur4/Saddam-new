@@ -28,7 +28,7 @@ Options:
   -t N, --threads N     Threads Number (default=1)
 ```
 
-### Compared with Saddam, there are several changes:
+### Contrasted to Saddam, there are several changes:
 
 1. Support for CLDAP protocol.
 2. After benchmark, you can save the still available IPs to a new txt file.
